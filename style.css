@@ -91,9 +91,54 @@ header {
     font-weight: 600;
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .header-badges {
     display: flex;
     gap: 0.5rem;
+}
+
+.gh-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.gh-link:hover {
+    color: var(--secondary);
+}
+
+.gh-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.gh-stats {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.gh-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.gh-stat svg {
+    width: 13px;
+    height: 13px;
 }
 
 .badge {
