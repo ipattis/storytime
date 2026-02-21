@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storytime - Local Bedtime Stories</title>
+    <meta name="description" content="Generate bedtime stories using local AI models in your browser.">
+    <!-- Google Fonts for Modern Aesthetics -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- WebLLM for text, Transformers.js for TTS -->
+    <script type="module" src="app.js" defer></script>
+</head>
+
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <span>Storytime</span>
+            </div>
+            <div class="header-badges">
+                <span class="badge badge-qwen">Qwen 1.5B </span>
+                <span class="badge badge-local">100% Local</span>
+            </div>
+        </header>
+
+        <main>
+            <section class="intro card">
+                <h1>Magical Bedtime Stories</h1>
+                <p>Generate a unique story powered entirely by your device's GPU. The text and audio are created locally
+                    in your browser. No data leaves your machine.</p>
+            </section>
+
+            <section class="creator card">
+                <h2>Create Your Story</h2>
+
+                <div class="form-group">
+                    <label for="story-prompt">Who is the story about?</label>
+                    <textarea id="story-prompt" rows="3"
+                        placeholder="e.g. A brave little fox named Pip who wants to touch the stars..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="voice-select">Choose a Voice / Speaker</label>
+                    <select id="voice-select">
+                        <option value="af">Default (American Female)</option>
+                        <option value="af_bella">Bella (American Female)</option>
+                        <option value="af_nicole">Nicole (American Female)</option>
+                        <option value="af_sarah">Sarah (American Female)</option>
+                        <option value="af_sky">Sky (American Female)</option>
+                        <option value="am_adam">Adam (American Male)</option>
+                        <option value="am_michael">Michael (American Male)</option>
+                        <option value="bf_emma">Emma (British Female)</option>
+                        <option value="bf_isabella">Isabella (British Female)</option>
+                        <option value="bm_george">George (British Male)</option>
+                        <option value="bm_lewis">Lewis (British Male)</option>
+                    </select>
+                    <small>These voices are generated natively by the Kokoro-82M model.</small>
+                </div>
+
+                <div class="engine-status" id="engine-status">
+                    <div class="status-indicator"></div>
+                    <span id="status-text">Ready to download models... (~800MB)</span>
+                </div>
+
+                <div class="progress-bar-container" id="progress-container">
+                    <div class="progress-bar-fill" id="progress-fill"></div>
+                </div>
+
+                <button id="generate-btn" class="primary-btn">
+                    <span class="btn-text">Generate Story</span>
+                    <svg class="sparkle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                    </svg>
+                </button>
+            </section>
+
+            <section class="result-section" id="result-section">
+                <div class="scene-illustration" id="scene-illustration">
+                    <div class="illust-layer" id="illust-layer-a"></div>
+                    <div class="illust-layer" id="illust-layer-b"></div>
+                </div>
+                <div class="audio-player card">
+                    <div class="player-controls">
+                        <button class="play-btn" id="play-btn" disabled>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </button>
+                        <div class="audio-waveform" id="waveform">
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-output card">
+                    <div id="story-content" class="markdown-body">
+                        <em>Your story will appear here...</em>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Built securely with WebGPU and local AI models.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
